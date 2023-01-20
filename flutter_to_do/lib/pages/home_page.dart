@@ -10,6 +10,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //text controller
+  final _controller = TextEditingController();
+
   //list of todo tasks
   List todoList = [
     ["make tutorial", false],
@@ -28,7 +31,11 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         builder: (context) {
-          return DialogBox();
+          return DialogBox(
+            controller: _controller,
+            onSave: saveNewTask(),
+            onCancel: () => Navigator.of(context).pop(),
+          );
         });
   }
 
