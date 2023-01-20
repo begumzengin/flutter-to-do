@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_to_do/util/my_button.dart';
 
 class DialogBox extends StatelessWidget {
   const DialogBox({super.key});
@@ -21,7 +22,19 @@ class DialogBox extends StatelessWidget {
 
               //save and cancel buttons
               Row(
-                children: [],
+                children: [
+                  //save button
+                  MyButton(
+                    text: "save",
+                    onPressed: () {},
+                  ),
+
+                  //cancel button
+                  MyButton(
+                    text: "cancel",
+                    onPressed: () {},
+                  )
+                ],
               ),
             ],
           )),

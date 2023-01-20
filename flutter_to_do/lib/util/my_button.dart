@@ -11,6 +11,9 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialButton(
+      onPressed: onPressed,
+      child: Text(text),
+    );
   }
 }
