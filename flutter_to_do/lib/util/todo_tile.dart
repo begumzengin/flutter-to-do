@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class ToDoTile extends StatelessWidget {
+class ToDoTile extends StatefulWidget {
   final String taskName;
   final bool taskCompleted;
   Function(bool?)? onChanged;
@@ -15,6 +15,19 @@ class ToDoTile extends StatelessWidget {
     required this.onChanged,
     required this.deleteFunction,
   });
+
+  @override
+  State<ToDoTile> createState() => _ToDoTileState();
+}
+
+class _ToDoTileState extends State<ToDoTile> {
+  Color _color = Color(0xFFF5CFE9);
+
+  @override
+  void initState() {
+    super.initState();
+    _color = getRandomColor();
+  }
 
   Color getRandomColor() {
     var colors = [
@@ -41,7 +54,7 @@ class ToDoTile extends StatelessWidget {
       child: Slidable(
         endActionPane: ActionPane(motion: StretchMotion(), children: [
           SlidableAction(
-            onPressed: deleteFunction,
+            onPressed: widget.deleteFunction,
             icon: Icons.delete,
             backgroundColor: Colors.black,
             borderRadius: BorderRadius.circular(12),
@@ -53,21 +66,21 @@ class ToDoTile extends StatelessWidget {
             children: [
               //checkbox
               Checkbox(
-                value: taskCompleted,
-                onChanged: onChanged,
+                value: widget.taskCompleted,
+                onChanged: widget.onChanged,
                 activeColor: Colors.black,
               ),
 
               //task name
-              Text(taskName,
+              Text(widget.taskName,
                   style: TextStyle(
-                      decoration: taskCompleted
+                      decoration: widget.taskCompleted
                           ? TextDecoration.lineThrough
                           : TextDecoration.none)),
             ],
           ),
           decoration: BoxDecoration(
-            color: getRandomColor(),
+            color: _color,
             borderRadius: BorderRadius.circular(12),
           ),
         ),
