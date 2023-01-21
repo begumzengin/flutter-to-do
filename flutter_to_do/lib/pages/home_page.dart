@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_to_do/data/database.dart';
 import 'package:flutter_to_do/util/dialog_box.dart';
 import 'package:flutter_to_do/util/todo_tile.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -77,14 +78,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 245, 235, 241),
       appBar: AppBar(
-        title: Text('to do'),
+        title: Text('to do', style: GoogleFonts.fredokaOne(letterSpacing: 4)),
         elevation: 1,
-        backgroundColor: Color.fromARGB(255, 91, 156, 229),
+        backgroundColor: Color.fromARGB(255, 125, 134, 212),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
         child: Icon(Icons.add),
-        backgroundColor: Color.fromARGB(255, 91, 156, 229),
+        backgroundColor: Color.fromARGB(255, 125, 134, 212),
       ),
       body: ListView.builder(
         itemCount: db.todoList.length,

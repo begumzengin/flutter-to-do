@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ToDoTile extends StatefulWidget {
   final String taskName;
@@ -73,10 +74,11 @@ class _ToDoTileState extends State<ToDoTile> {
 
               //task name
               Text(widget.taskName,
-                  style: TextStyle(
+                  style: GoogleFonts.workSans(
                       decoration: widget.taskCompleted
                           ? TextDecoration.lineThrough
-                          : TextDecoration.none)),
+                          : TextDecoration.none,
+                      fontSize: 14)),
             ],
           ),
           decoration: BoxDecoration(
