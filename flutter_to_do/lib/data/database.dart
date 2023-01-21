@@ -4,7 +4,7 @@ class ToDoDatabase {
   List todoList = [];
 
   //reference the box
-  final _myBox = Hive.openBox('myBox');
+  final _myBox = Hive.box('myBox');
 
   //run this method if this is the first time ever opening the app
   void createInitialData() {
@@ -15,8 +15,12 @@ class ToDoDatabase {
   }
 
   //load the data from the database
-  void loadData() {}
+  void loadData() {
+    todoList = _myBox.get("TODOLIST");
+  }
 
   //update the database
-  void updateDatabase() {}
+  void updateDatabase() {
+    _myBox.put("TODOLIST", todoList);
+  }
 }

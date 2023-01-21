@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -17,6 +16,24 @@ class ToDoTile extends StatelessWidget {
     required this.deleteFunction,
   });
 
+  Color getRandomColor() {
+    var colors = [
+      Color.fromARGB(255, 245, 182, 210),
+      Color.fromARGB(255, 207, 227, 243),
+      Color.fromARGB(255, 192, 212, 241),
+      Color.fromARGB(255, 244, 172, 208),
+      Color.fromARGB(255, 235, 180, 216),
+      Color.fromARGB(255, 188, 217, 239),
+      Color.fromARGB(255, 172, 203, 231),
+      Color.fromARGB(255, 245, 193, 219),
+      Color.fromARGB(255, 245, 174, 207),
+      Color.fromARGB(255, 213, 225, 239),
+    ];
+    var random = new Random();
+    var index = random.nextInt(colors.length);
+    return colors[index];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,7 +43,7 @@ class ToDoTile extends StatelessWidget {
           SlidableAction(
             onPressed: deleteFunction,
             icon: Icons.delete,
-            backgroundColor: Colors.red.shade300,
+            backgroundColor: Colors.black,
             borderRadius: BorderRadius.circular(12),
           )
         ]),
@@ -50,7 +67,7 @@ class ToDoTile extends StatelessWidget {
             ],
           ),
           decoration: BoxDecoration(
-            color: Colors.yellow,
+            color: getRandomColor(),
             borderRadius: BorderRadius.circular(12),
           ),
         ),
