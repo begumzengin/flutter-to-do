@@ -32,6 +32,8 @@ class _ToDoTileState extends State<ToDoTile> {
 
   Color getRandomColor() {
     var colors = [
+      /*
+      //pembe mavi mor color theme
       Color.fromARGB(255, 245, 182, 210),
       Color.fromARGB(255, 207, 227, 243),
       Color.fromARGB(255, 192, 212, 241),
@@ -42,6 +44,15 @@ class _ToDoTileState extends State<ToDoTile> {
       Color.fromARGB(255, 245, 193, 219),
       Color.fromARGB(255, 245, 174, 207),
       Color.fromARGB(255, 213, 225, 239),
+      */
+      Color(0xFFC4D6AC),
+      Color(0xFFA8C8B0),
+      Color(0xFF79B68C),
+      Color(0xFFD8E090),
+      Color(0xFFC0C068),
+      Color(0xFF708848),
+      Color(0xFF608070),
+      Color(0xFFC0C888),
     ];
     var random = new Random();
     var index = random.nextInt(colors.length);
@@ -74,7 +85,7 @@ class _ToDoTileState extends State<ToDoTile> {
 
               //task name
               Text(widget.taskName,
-                  style: GoogleFonts.workSans(
+                  style: GoogleFonts.chivo(
                       decoration: widget.taskCompleted
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
