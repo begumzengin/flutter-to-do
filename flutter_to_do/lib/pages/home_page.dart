@@ -1,3 +1,5 @@
+import 'dart:math';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do/data/database.dart';
 import 'package:flutter_to_do/util/dialog_box.dart';
@@ -16,6 +18,16 @@ class _HomePageState extends State<HomePage> {
   //reference the hive box
   final _myBox = Hive.box('myBox');
   ToDoDatabase db = ToDoDatabase();
+
+  //confetti
+  final _confettiControl = ConfettiController(duration: Duration(seconds: 2));
+  bool isPlaying = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _confettiControl.dispose();
+  }
 
   @override
   void initState() {
@@ -40,6 +52,7 @@ class _HomePageState extends State<HomePage> {
       db.todoList[index][1] = !db.todoList[index][1];
     });
     db.updateDatabase();
+    _confettiControl.play();
   }
 
   //save new task
@@ -91,17 +104,33 @@ class _HomePageState extends State<HomePage> {
         child: Icon(Icons.add),
         backgroundColor: Color(0xFFEED059),
       ),
-      body: ListView.builder(
-        itemCount: db.todoList.length,
-        itemBuilder: (context, index) {
-          return ToDoTile(
-            taskName: db.todoList[index][0],
-            taskCompleted: db.todoList[index][1],
-            onChanged: (value) => checkBoxChanged(value, index),
-            deleteFunction: (context) => deleteTask(index),
-          );
-        },
-      ),
+      body: Stack(alignment: Alignment.topCenter, children: [
+        ListView.builder(
+          itemCount: db.todoList.length,
+          itemBuilder: (context, index) {
+            return ToDoTile(
+              taskName: db.todoList[index][0],
+              taskCompleted: db.todoList[index][1],
+              onChanged: (value) => checkBoxChanged(value, index),
+              deleteFunction: (context) => deleteTask(index),
+            );
+          },
+        ),
+        ConfettiWidget(
+          confettiController: _confettiControl,
+          blastDirection: pi / 2,
+          colors: [
+            Color.fromARGB(255, 193, 199, 206),
+            Color.fromARGB(255, 130, 172, 179),
+            Color.fromARGB(255, 245, 157, 0),
+            Color.fromARGB(255, 0, 92, 80),
+            Color.fromARGB(255, 7, 36, 28),
+          ],
+          gravity: 0.2,
+          emissionFrequency: 0.08,
+          shouldLoop: false,
+        )
+      ]),
     );
   }
 }
