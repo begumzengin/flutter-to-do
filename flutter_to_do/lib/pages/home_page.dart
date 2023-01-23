@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
 
   //confetti
   final _confettiControl = ConfettiController(duration: Duration(seconds: 2));
-  bool isPlaying = false;
 
   @override
   void dispose() {
@@ -52,7 +51,9 @@ class _HomePageState extends State<HomePage> {
       db.todoList[index][1] = !db.todoList[index][1];
     });
     db.updateDatabase();
-    _confettiControl.play();
+    if (db.todoList[index][1] == true) {
+      _confettiControl.play();
+    }
   }
 
   //save new task
