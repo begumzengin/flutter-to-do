@@ -102,7 +102,10 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Color.fromARGB(255, 66, 88, 70),
+        ),
         backgroundColor: Color(0xFFEED059),
       ),
       body: Stack(alignment: Alignment.topCenter, children: [
